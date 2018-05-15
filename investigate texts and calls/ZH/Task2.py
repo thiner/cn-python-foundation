@@ -22,4 +22,21 @@ September 2016.".
 如果键已经存在于字典内，为键所对应的值加上对应数值；
 如果键不存在于字典内，将此键加入字典，并将它的值设为给定值。
 """
+callDict = {}
+for call in calls:
+    if call[0] in callDict:
+        callDict[call[0]] += int(call[3])
+    else:
+        callDict[call[0]] = int(call[3])
+    if call[1] in callDict:
+        callDict[call[1]] += int(call[3])
+    else:
+        callDict[call[1]] = int(call[3])
 
+longestKey = ''
+longestValue = 0
+for (k,v) in callDict.items():
+    if int(v) > longestValue:
+        longestKey = k
+        longestValue = int(v)
+print("{} spent the longest time, {} seconds, on the phone during September 2016.".format(longestKey, longestValue))
