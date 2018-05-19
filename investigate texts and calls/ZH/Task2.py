@@ -33,8 +33,7 @@ for call in calls:
     else:
         callDict[call[1]] = int(call[3])
 
-longestKey = ''
-longestValue = 0
+longestKey, longestValue = max(callDict.items(), key=lambda x: x[1])
 for (k,v) in callDict.items():
     if int(v) > longestValue:
         longestKey = k

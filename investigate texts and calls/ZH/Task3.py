@@ -39,7 +39,7 @@ with open('calls.csv', 'r') as f:
 to other fixed lines in Bangalore."
 注意：百分比应包含2位小数。
 """
-callees = set([])
+callees = set()
 for call in calls:
     if call[0].startswith('(080)'):
         if call[1].startswith('('):
@@ -54,13 +54,14 @@ calleeList.sort()
 print("The numbers called by people in Bangalore have codes:")
 for callee in calleeList:
     print(callee)
-    # print('\n')
 
 # part 2
-count = 0
+count_callout, count_internal_calls = 0, 0
 for call in calls:
-    if call[0].startswith('(080)') and call[1].startswith('(080)'):
-        count += 1
+    if call[0].startswith('(080)'):
+        count_callout += 1
+        if call[1].startswith('(080)'):
+            count_internal_calls += 1
 
-percentage = count / len(calls) * 100
+percentage = count_internal_calls / count_callout * 100
 print("%.2f percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore." % percentage)
